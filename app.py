@@ -3,11 +3,14 @@ from tkinter.font import BOLD
 from PIL import Image, ImageTk
 from tkinter import filedialog
 
+def deselect(event):
+    root.focus_set()
+
 def browsetxt():
-    filename = filedialog.askopenfilename(initialdir = "/",title = "Select a File",filetypes = (("Text files","*.txt*"),("all files","*.*")))
+    filename = filedialog.askopenfilename(initialdir = "/",title = "Select a File",filetypes = [("Text files","*.txt*")])
                                                     
 def browseexcel():
-    filename = filedialog.askopenfilename(initialdir = "/",title = "Select a File",filetypes = (("Text files","*.xls*"),("all files","*.*")))                                                    
+    filename = filedialog.askopenfilename(initialdir = "/",title = "Select a File",filetypes = [("Excel","*.xls*;*.xlsx*;*.csv*")])                                                    
 
 def Page1():
     f2.pack_forget()
@@ -93,16 +96,23 @@ my_canvas3 = Canvas(f3, width=800, height=600)
 my_canvas3.pack(fill="both",expand=True)
 my_canvas3.create_image(0,0, image=photo, anchor="nw")
 my_canvas3.create_text(400,40,text="Information",fill="white",font=("Helvetica",23,BOLD))
+
 left3=Button(root,image=left1,text="Previous",height=50,width=50,compound=TOP,command=Page2)
 Right3=Button(root,image=Right1,text="Next",height=50,width=50,compound=TOP)
 left_window = my_canvas3.create_window(40,300,window=left3)
 Right_window = my_canvas3.create_window(760,300,window=Right3)
-Email = Entry(my_canvas3)
-Password = Entry(my_canvas3,show="*")
-Subject = Entry(my_canvas3)
-my_canvas3.create_window(550,200,window=Email)
-my_canvas3.create_window(550,300,window=Password)
-my_canvas3.create_window(550,400,window=Subject)
+
+Email = Entry(my_canvas3,justify=CENTER,font=("Helvetica",11,BOLD),highlightcolor="red",highlightbackground="green",highlightthickness=2)
+Password = Entry(my_canvas3,show="*",justify=CENTER,font=("Helvetica",11,BOLD),highlightcolor="red",highlightbackground="green",highlightthickness=2)
+Subject = Entry(my_canvas3,justify=CENTER,font=("Helvetica",11,BOLD),highlightcolor="red",highlightbackground="green",highlightthickness=2)
+
+Email.bind("<Leave>",deselect)
+Password.bind("<Leave>",deselect)
+Subject.bind("<Leave>",deselect)
+
+my_canvas3.create_window(550,200,window=Email,height=34,width=200)
+my_canvas3.create_window(550,300,window=Password,height=34,width=200)
+my_canvas3.create_window(550,400,window=Subject,height=34,width=200)
 my_canvas3.create_text(330,200,text="Email:",fill="white",font=("Helvetica",15,BOLD))
 my_canvas3.create_text(330,300,text="Password:",fill="white",font=("Helvetica",15,BOLD))
 my_canvas3.create_text(330,400,text="Subject:",fill="white",font=("Helvetica",15,BOLD))
