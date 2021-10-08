@@ -30,6 +30,9 @@ class GUI(Tk):
         image1 = image.resize((800,600))
         self.photo = ImageTk.PhotoImage(image1)
         
+        Nirma_logo = Image.open("APP/Nirma_logo.png")
+        Nirma_logo1 = Nirma_logo.resize((150,100))
+        self.Nirma_logo2 = ImageTk.PhotoImage(Nirma_logo1)
 
         #Left Button
         left_arrow = Image.open("APP/Left.png")
@@ -91,11 +94,14 @@ class FirstPage(Frame):
         my_canvas.pack(fill="both",expand=True)
 
         my_canvas.create_image(0,0, image= controller.photo, anchor="nw")
+        my_canvas.create_image(770,20, image= controller.Nirma_logo2, anchor="ne")
         my_canvas.create_text(400,40,text="Instructions",fill="white",font=("Helvetica",23,BOLD))
         my_canvas.create_text(400,130,text="1. Create 2 files : \n\t1) txt file containing the body of the mail  \n\t2) excel sheet containing the values of the placeholder",fill="white",font=("Helvetica",15,BOLD))
         my_canvas.create_text(330,210,text="2. Upload these files as asked in this application",fill="white",font=("Helvetica",15,BOLD))
         my_canvas.create_text(260,290,text="3. Enter your email and password",fill="white",font=("Helvetica",15,BOLD))
         my_canvas.create_text(370,370,text="4. Click on the submit button and your mails will be sent",fill="white",font=("Helvetica",15,BOLD))
+        my_canvas.create_text(150,500,text="Made by:\n\nHarsh Ahuja\n\nGaurang Maheshwari",fill="yellow",font=("Helvetica",15,BOLD))
+        my_canvas.create_text(750,500,text="Mentored by:\n\nDr. Sachin Gajjar\n\nPurvansh Shah",fill="yellow",font=("Helvetica",15,BOLD),anchor="e")
 
         my_canvas.create_window(40,300,window=left)
         my_canvas.create_window(760,300,window=Right)
@@ -110,6 +116,7 @@ class SecondPage(Frame):
         my_canvas1 = Canvas(self, width=800, height=600)
         my_canvas1.pack(fill="both",expand=True)
         my_canvas1.create_image(0,0, image=controller.photo, anchor="nw")
+        my_canvas1.create_image(770,20, image= controller.Nirma_logo2, anchor="ne")
         my_canvas1.create_text(400,40,text="Upload Files",fill="white",font=("Helvetica",23,BOLD))
 
         left=Button(controller,image=controller.left1,text="Previous",height=50,width=50,compound=TOP,command=lambda: controller.show_frame(0))
@@ -135,6 +142,7 @@ class ThirdPage(Frame):
         my_canvas2 = Canvas(self, width=800, height=600)
         my_canvas2.pack(fill="both",expand=True)
         my_canvas2.create_image(0,0, image=controller.photo, anchor="nw")
+        my_canvas2.create_image(770,20, image= controller.Nirma_logo2, anchor="ne")
         my_canvas2.create_text(400,40,text="Information",fill="white",font=("Helvetica",23,BOLD))
 
         left=Button(controller,image=controller.left1,text="Previous",height=50,width=50,compound=TOP,command=lambda: [controller.show_frame(1),controller.destroy_frame()])
@@ -188,6 +196,7 @@ class FourthPage(Frame):
         my_canvas3 = Canvas(self, width=800, height=600)
         my_canvas3.pack(fill="both",expand=True)
         my_canvas3.create_image(0,0, image= controller.photo, anchor="nw")
+        my_canvas3.create_image(10,10, image= controller.Nirma_logo2, anchor="nw")
         my_canvas3.create_text(400,40,text= "Place holder",fill="white",font=("Helvetica",23,BOLD))
 
         left=Button(controller,image=controller.left1,text="Previous",height=50,width=50,compound=TOP,command=lambda: controller.show_frame(index-1))
@@ -233,6 +242,7 @@ class FifthPage(Frame):
         self.my_canvas3 = Canvas(self, width=800, height=600)
         self.my_canvas3.pack(fill="both",expand=True)
         self.my_canvas3.create_image(0,0, image= controller.photo, anchor="nw")
+        self.my_canvas3.create_image(770,20, image= controller.Nirma_logo2, anchor="ne")
         self.my_canvas3.create_text(400,40,text= "Confirmation",fill="white",font=("Helvetica",23,BOLD))
 
         left=Button(controller,image=controller.left1,text="Previous",height=50,width=50,compound=TOP,command=lambda: controller.show_frame(index-1))
@@ -267,8 +277,8 @@ class FifthPage(Frame):
                 self.success = self.success+1
             except:
                 self.unsuccessful = self.unsuccessful + 1
-        self.my_canvas3.create_text(250,475,text="No. of successful emails sent : " + str(self.success),fill="white",font=("Helvetica",15,BOLD))
-        self.my_canvas3.create_text(250,550,text="No. of unsuccessful emails : " + str(self.unsuccessful),fill="white",font=("Helvetica",15,BOLD))    
+        self.my_canvas3.create_text(250,475,text="No. of successful emails sent : " + str(self.success),fill="light green",font=("Helvetica",15,BOLD))
+        self.my_canvas3.create_text(250,550,text="No. of unsuccessful emails : " + str(self.unsuccessful),fill="red",font=("Helvetica",15,BOLD))    
                                
 
 def email_ver(From,Password,Subject,To,message):
